@@ -6,12 +6,6 @@ import NotFound from './pages/NotFound/NotFound';
 import ChartsAndMaps from './pages/ChartsAndMaps/ChartsAndMaps';
 
 function App() {
-
-
-
-
-  
-
   return (
     <Router>
       <Routes>
