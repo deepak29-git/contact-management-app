@@ -23,7 +23,7 @@ const ContactForm = ({ existingContact, onClose }: ContactFormProps) => {
       firstName: '',
       lastName: '',
       status: 'active',
-    },
+    }
   );
   const dispatch = useDispatch();
 

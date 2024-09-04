@@ -20,7 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  CategoryScale,
+  CategoryScale
 );
 
 type CovidData = {
@@ -42,7 +42,7 @@ type ChartData = {
 // Fetch data function
 const fetchCovidData = async (): Promise<CovidData> => {
   const response = await fetch(
-    'https://disease.sh/v3/covid-19/historical/all?lastdays=all',
+    'https://disease.sh/v3/covid-19/historical/all?lastdays=all'
   );
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -54,7 +54,7 @@ const LineGraph = () => {
   // Use React Query to fetch data
   const { data, error, isLoading } = useQuery<CovidData, Error>(
     ['covidData'],
-    fetchCovidData,
+    fetchCovidData
   );
 
   // Prepare chart data if fetched
