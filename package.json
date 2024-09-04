@@ -37,6 +37,11 @@
     "prettier:fix": "prettier --write '**/**/*.{js,jsx,ts,tsx,css}'",
     "lint": "eslint --fix . --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
