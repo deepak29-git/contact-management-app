@@ -1,26 +1,25 @@
-import { createSlice,PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+type Contact = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  status: 'active' | 'inactive';
+};
 
-type Contact={
-  id:string,
-  firstName:string,
-  lastName:string,
-  status:'active' | 'inactive'
-}
-
-type ContactState=Contact[]
-const initialState:ContactState=[]
+type ContactState = Contact[];
+const initialState: ContactState = [];
 
 const contactsSlice = createSlice({
-  name: "contacts",
+  name: 'contacts',
   initialState,
   reducers: {
-    addContact: (state, action:PayloadAction<Contact>) => {
+    addContact: (state, action: PayloadAction<Contact>) => {
       state.push(action.payload);
     },
     updateContact: (state, action) => {
       const index = state.findIndex(
-        (contact) => contact.id === action.payload.id
+        (contact) => contact.id === action.payload.id,
       );
       if (index !== -1) {
         state[index] = action.payload;

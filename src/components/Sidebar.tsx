@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -13,7 +13,8 @@ const Sidebar = () => {
           <li>
             <Link
               to="/contact"
-              className="block py-2 px-4 rounded hover:bg-gray-200">
+              className="block py-2 px-4 rounded hover:bg-gray-200"
+            >
               Contact
             </Link>
           </li>

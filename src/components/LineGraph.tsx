@@ -1,7 +1,6 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import { useQuery } from "@tanstack/react-query";
-import { TailSpin } from "react-loader-spinner";
+import { Line } from 'react-chartjs-2';
+import { useQuery } from '@tanstack/react-query';
+import { TailSpin } from 'react-loader-spinner';
 import {
   Chart as ChartJS,
   LineElement,
@@ -11,7 +10,7 @@ import {
   Tooltip,
   Legend,
   CategoryScale,
-} from "chart.js";
+} from 'chart.js';
 
 // Register the necessary components with Chart.js
 ChartJS.register(
@@ -21,7 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  CategoryScale
+  CategoryScale,
 );
 
 type CovidData = {
@@ -43,10 +42,10 @@ type ChartData = {
 // Fetch data function
 const fetchCovidData = async (): Promise<CovidData> => {
   const response = await fetch(
-    "https://disease.sh/v3/covid-19/historical/all?lastdays=all"
+    'https://disease.sh/v3/covid-19/historical/all?lastdays=all',
   );
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error('Network response was not ok');
   }
   return response.json();
 };
@@ -54,8 +53,8 @@ const fetchCovidData = async (): Promise<CovidData> => {
 const LineGraph = () => {
   // Use React Query to fetch data
   const { data, error, isLoading } = useQuery<CovidData, Error>(
-    ["covidData"],
-    fetchCovidData
+    ['covidData'],
+    fetchCovidData,
   );
 
   // Prepare chart data if fetched
@@ -64,24 +63,24 @@ const LineGraph = () => {
         labels: Object.keys(data.cases),
         datasets: [
           {
-            label: "Cases",
+            label: 'Cases',
             data: Object.values(data.cases),
             fill: false,
-            borderColor: "rgba(75,192,192,1)",
+            borderColor: 'rgba(75,192,192,1)',
             tension: 0.1,
           },
           {
-            label: "Deaths",
+            label: 'Deaths',
             data: Object.values(data.deaths),
             fill: false,
-            borderColor: "rgba(255,99,132,1)",
+            borderColor: 'rgba(255,99,132,1)',
             tension: 0.1,
           },
           {
-            label: "Recovered",
+            label: 'Recovered',
             data: Object.values(data.recovered),
             fill: false,
-            borderColor: "rgba(54,162,235,1)",
+            borderColor: 'rgba(54,162,235,1)',
             tension: 0.1,
           },
         ],
@@ -107,24 +106,24 @@ const LineGraph = () => {
             responsive: true,
             plugins: {
               legend: {
-                position: "top",
+                position: 'top',
               },
               title: {
                 display: true,
-                text: "COVID-19 Historical Data",
+                text: 'COVID-19 Historical Data',
               },
             },
             scales: {
               x: {
                 title: {
                   display: true,
-                  text: "Date",
+                  text: 'Date',
                 },
               },
               y: {
                 title: {
                   display: true,
-                  text: "Number of Cases",
+                  text: 'Number of Cases',
                 },
               },
             },

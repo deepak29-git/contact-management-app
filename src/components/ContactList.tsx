@@ -1,20 +1,21 @@
 // src/components/ContactList.js
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "../redux/feature/ContactSlice/ContactSlice";
-import ContactForm from "./ContactForm";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from '../redux/feature/ContactSlice/ContactSlice';
+import ContactForm from './ContactForm';
+import { RootState } from '../redux/store';
 
 type Contact = {
   id: string;
   firstName: string;
   lastName: string;
-  status: "active" | "inactive";
+  status: 'active' | 'inactive';
 };
 type ContactListProps = {
   showForm: boolean;
 };
 const ContactList = ({ showForm }: ContactListProps) => {
-  const contacts = useSelector((state: any) => state.contacts);
+  const contacts = useSelector((state: RootState) => state.contacts);
   const dispatch = useDispatch();
   const [editingContact, setEditingContact] = useState<Contact | null>(null);
 
@@ -22,7 +23,7 @@ const ContactList = ({ showForm }: ContactListProps) => {
     dispatch(deleteContact(id));
   };
 
-  const handleEdit = (contact:Contact) => {
+  const handleEdit = (contact: Contact) => {
     setEditingContact(contact);
   };
 
@@ -45,7 +46,8 @@ const ContactList = ({ showForm }: ContactListProps) => {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="white"
-                className="w-4 h-4">
+                className="w-4 h-4"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -66,9 +68,9 @@ const ContactList = ({ showForm }: ContactListProps) => {
         </div>
       ) : (
         <div className="flex flex-wrap">
-          {contacts.map((contact:Contact) => (
-            <div className=" mx-auto flex ">
-              <div key={contact.id} className="p-4  mb-4">
+          {contacts.map((contact: Contact) => (
+            <div className=" mx-auto flex" key={contact.id}>
+              <div className="p-4 mb-4">
                 <div className="border border-black p-4 w-max mb-4">
                   <p>First Name: {contact.firstName}</p>
                   <p>Last Name: {contact.lastName}</p>
@@ -78,12 +80,14 @@ const ContactList = ({ showForm }: ContactListProps) => {
                 <div className="flex flex-col items-center mx-auto space-y-2 mt-2 w-20">
                   <button
                     onClick={() => handleEdit(contact)}
-                    className="bg-green-500 text-white p-2 rounded font-bold">
+                    className="bg-green-500 text-white p-2 rounded font-bold"
+                  >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(contact.id)}
-                    className="bg-red-500 text-white p-2 rounded font-bold">
+                    className="bg-red-500 text-white p-2 rounded font-bold"
+                  >
                     Delete
                   </button>
                 </div>
